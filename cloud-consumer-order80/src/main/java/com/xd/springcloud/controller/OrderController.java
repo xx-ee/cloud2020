@@ -2,6 +2,7 @@ package com.xd.springcloud.controller;
 
 import com.xd.springcloud.entities.CommonResult;
 import com.xd.springcloud.entities.Payment;
+import com.xd.springcloud.lb.LoadBalancer;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,8 @@ public class OrderController {
     /**
      * 自定义负载均衡规则
      */
-//    @Resource
-//    private LoadBalancer loadBalancer;
+    @Resource
+    private LoadBalancer loadBalancer;
     @Resource
     private DiscoveryClient discoveryClient;
 
@@ -81,7 +82,7 @@ public class OrderController {
      * http://localhost/consumer/payment/payment/lb
      *
      * @return
-     *//*
+     */
     @GetMapping(value = "/consumer/payment/lb")
     public String getPaymentLB() {
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
@@ -93,7 +94,7 @@ public class OrderController {
         return restTemplate.getForObject(uri + "/payment/lb", String.class);
     }
 
-    *//**
+    /**
      * 链路跟踪 zipkin+sleuth
      * http://localhost/consumer/payment/zipkin
      *
