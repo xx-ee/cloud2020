@@ -66,7 +66,16 @@ public class PaymentController {
         return new CommonResult(444, "没有对应记录,查询ID:" + id, null);
     }
 
-
+    @GetMapping(value = "/payment/feign/timeout")
+    public String paymentFeignTimeout() {
+        try {
+            // 暂停3秒钟
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
+    }
     /**
      * 服务发现
      *
@@ -92,16 +101,7 @@ public class PaymentController {
     }
 //
 //
-//    @GetMapping(value = "/payment/feign/timeout")
-//    public String paymentFeignTimeout() {
-//        try {
-//            // 暂停3秒钟
-//            TimeUnit.SECONDS.sleep(3);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        return serverPort;
-//    }
+
 //
 //    /**
 //     * 链路跟踪
