@@ -3,6 +3,7 @@ package com.xd.springcloud.controller;
 import com.xd.springcloud.entities.CommonResult;
 import com.xd.springcloud.entities.Payment;
 import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,8 +35,8 @@ public class OrderController {
      */
 //    @Resource
 //    private LoadBalancer loadBalancer;
-//    @Resource
-//    private DiscoveryClient discoveryClient;
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     /**
      * http://localhost/consumer/payment/create?serial=atguigu002
@@ -59,14 +60,15 @@ public class OrderController {
         return restTemplate.getForObject(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
     }
 
-/*    *//**
+/**
      * http://localhost/consumer/payment/getForEntity/31
      *
      * @param id
      * @return
-     *//*
+     */
     @GetMapping("/consumer/payment/getForEntity/{id}")
     public CommonResult<Payment> getPayment2(@PathVariable("id") Long id) {
+        List<String> services = discoveryClient.getServices();
         ResponseEntity<CommonResult> entity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
         if (entity.getStatusCode().is2xxSuccessful()) {
             return entity.getBody();
@@ -74,7 +76,7 @@ public class OrderController {
         return new CommonResult<>(444, "操作失败");
     }
 
-    *//**
+    /**
      * 路由规则: 轮询
      * http://localhost/consumer/payment/payment/lb
      *
