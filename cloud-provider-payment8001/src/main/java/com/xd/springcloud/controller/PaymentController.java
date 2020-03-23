@@ -29,8 +29,8 @@ public class PaymentController {
     /**
      * 服务发现 获取服务信息
      */
-//    @Resource
-//    private DiscoveryClient discoveryClient;
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     /**
      * 新增
@@ -66,12 +66,12 @@ public class PaymentController {
         return new CommonResult(444, "没有对应记录,查询ID:" + id, null);
     }
 
-/*
-    *//**
+
+    /**
      * 服务发现
      *
      * @return
-     *//*
+     */
     @GetMapping(value = "payment/discovery")
     public Object discovery() {
         List<String> services = discoveryClient.getServices();
@@ -86,30 +86,30 @@ public class PaymentController {
         return this.discoveryClient;
     }
 
-    @GetMapping(value = "/payment/lb")
-    public String getPaymentLB() {
-        return serverPort;
-    }
-
-
-    @GetMapping(value = "/payment/feign/timeout")
-    public String paymentFeignTimeout() {
-        try {
-            // 暂停3秒钟
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return serverPort;
-    }
-
-    *//**
-     * 链路跟踪
-     *
-     * @return
-     *//*
-    @GetMapping(value = "/payment/zipkin")
-    public String paymentZipkin() {
-        return "hi,i'am paymentZipkin server fall back,welcome to atguigu,O(∩_∩)O哈哈~";
-    }*/
+//    @GetMapping(value = "/payment/lb")
+//    public String getPaymentLB() {
+//        return serverPort;
+//    }
+//
+//
+//    @GetMapping(value = "/payment/feign/timeout")
+//    public String paymentFeignTimeout() {
+//        try {
+//            // 暂停3秒钟
+//            TimeUnit.SECONDS.sleep(3);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        return serverPort;
+//    }
+//
+//    /**
+//     * 链路跟踪
+//     *
+//     * @return
+//     */
+//    @GetMapping(value = "/payment/zipkin")
+//    public String paymentZipkin() {
+//        return "hi,i'am paymentZipkin server fall back,welcome to atguigu,O(∩_∩)O哈哈~";
+//    }
 }

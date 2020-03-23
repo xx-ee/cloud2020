@@ -32,6 +32,9 @@ eureka:
     instance-id: payment8001
     # 访问路径可以显示ip地址
     prefer-ip-address: true
+
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds:
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
   type-aliases-package: com.xd.springcloud.entities
