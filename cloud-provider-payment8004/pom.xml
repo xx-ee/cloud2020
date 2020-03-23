@@ -15,7 +15,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.atguigu.springcloud</groupId>
+            <groupId>com.xd.springcloud</groupId>
             <artifactId>cloud-api-common</artifactId>
             <version>${project.version}</version>
         </dependency>
