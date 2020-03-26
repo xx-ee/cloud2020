@@ -32,5 +32,3 @@ eureka:
 #    web:
 #      exposure:
 #        include: "bus-refresh"
-config:
-  info: master branch,version=1
