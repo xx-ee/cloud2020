@@ -1,5 +1,5 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
@@ -16,15 +16,17 @@ spring:
     username: guest
     password: guest
 
-
 eureka:
   client:
     service-url:
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7001.com:7001/eureka
 
-#暴露监控端点
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+
+
+#curl -X POST "http://localhost:3344/actuator/bus-refresh/config-client:3355",定点通知
+#curl -X POST "http://localhost:3344/actuator/bus-refresh/",全局通知

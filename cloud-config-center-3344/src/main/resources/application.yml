@@ -13,12 +13,11 @@ spring:
           search-paths:
             - microservice-config
       label: master
-#  rabbitmq:
-#    host: localhost
-#    port: 5672
-#    username: guest
-#    password: guest
-
+  rabbitmq:
+    host: 192.168.154.21
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
@@ -27,8 +26,8 @@ eureka:
 
 # 暴露bus刷新配置的端点
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "bus-refresh"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
