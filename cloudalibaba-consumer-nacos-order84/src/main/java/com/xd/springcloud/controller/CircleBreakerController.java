@@ -28,6 +28,22 @@ public class CircleBreakerController {
     @Resource
     private RestTemplate restTemplate;
 
+    // --------------- open feign---------
+
+    @Resource
+    private PaymentService paymentService;
+
+    @GetMapping("/consumer/paymentSQL/{id}")
+    public CommonResult<Payment> paymentSQL(@PathVariable("id") Long id){
+        return this.paymentService.paymentSQL(id);
+    }
+
+
+
+
+
+
+
     @RequestMapping("/consumer/fallback/{id}")
     @SentinelResource(value = "fallback",fallback = "handlerFallback", blockHandler = "blockHandler",
                 exceptionsToIgnore = {IllegalArgumentException.class}) // 配置了blockHandler和fallback
@@ -51,13 +67,5 @@ public class CircleBreakerController {
         return new CommonResult<>(445, "blockHandler-sentinel 限流，无此流水号：blockException" + exception.getMessage(), payment);
     }
 
-    // --------------- open feign---------
 
-    @Resource
-    private PaymentService paymentService;
-
-    @GetMapping("/consumer/paymentSQL/{id}")
-    public CommonResult<Payment> paymentSQL(@PathVariable("id") Long id){
-        return paymentService.paymentSQL(id);
-    }
 }

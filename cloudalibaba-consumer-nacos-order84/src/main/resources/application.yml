@@ -11,7 +11,6 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
-
 service-url:
   nacos-user-service: http://naocs-payment-provider
 
